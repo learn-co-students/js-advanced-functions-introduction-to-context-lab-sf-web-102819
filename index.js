@@ -56,22 +56,22 @@ function allWagesFor(recordObject){
     let allDates = recordObject.timeInEvents.map(function(x){
         return x.date
     })
-    let wagesEarned = allDates.map(function(x){
-        return wagesEarnedOnDate(recordObject, x)
-    })
-    let total = wagesEarned.reduce(function(x, total){
-        return total + x
-    })
+    // let wagesEarned = allDates.map(function(x){
+    //     return wagesEarnedOnDate(recordObject, x)
+    // })
+    let total = allDates.reduce(function(total, x){
+        return total + wagesEarnedOnDate(recordObject, x)
+    }, 0)
     return total
 }
 
 function calculatePayroll(employees){
-    let employeePayments = employees.map(function(x){
-        return allWagesFor(x)
-    })
-    let total = employeePayments.reduce(function(total, x){
-        return total + x
-    })
+    // let employeePayments = employees.map(function(x){
+    //     return allWagesFor(x)
+    // })
+    let total = employees.reduce(function(total, x){
+        return total + allWagesFor(x)
+    }, 0)
     return total;
 }
 
